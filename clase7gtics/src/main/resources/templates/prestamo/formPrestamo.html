@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Préstamo</title>
+</head>
+<body>
+<h1>Crear Nuevo Préstamo</h1>
+<form th:action="@{/prestamos/save}" th:object="${prestamo}" method="post">
+    <div>
+        <label>Dispositivo:</label>
+        <select th:field="*{dispositivo.id}">
+            <option th:each="dispositivo : ${dispositivos}" th:value="${dispositivo.id}" th:text="${dispositivo.nombre}"></option>
+        </select>
+    </div>
+    <div>
+        <label>Alumno:</label>
+        <select th:field="*{alumno.id}">
+            <option th:each="alumno : ${alumnos}" th:value="${alumno.id}" th:text="${alumno.correo}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+    </div>
+</form>
+</body>
+</html>

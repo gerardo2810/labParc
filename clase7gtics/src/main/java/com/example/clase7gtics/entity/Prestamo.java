@@ -1,10 +1,13 @@
 package com.example.clase7gtics.entity;
-import com.example.clase7gtics.entity.Dispositivos;
-import com.example.clase7gtics.entity.Usuario;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Prestamos")
 public class Prestamo {
@@ -14,22 +17,20 @@ public class Prestamo {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_profesor")
-    private Usuario profesor;
+    @JoinColumn(name = "dispositivo_id", nullable = false)
+    private Dispositivos dispositivo;
 
     @ManyToOne
-    @JoinColumn(name = "id_alumno")
+    @JoinColumn(name = "alumno_id", nullable = false)
     private Usuario alumno;
 
     @ManyToOne
-    @JoinColumn(name = "id_dispositivo")
-    private Dispositivos dispositivo;
+    @JoinColumn(name = "profesor_id", nullable = false)
+    private Usuario profesor;
 
     @Column(nullable = false)
-    private Date fechaInicio;
+    private LocalDate fechaPrestamo;
 
-    @Column(nullable = false)
-    private Date fechaFin;
-
-
+    @Column(nullable = true)
+    private LocalDate fechaDevolucion;
 }

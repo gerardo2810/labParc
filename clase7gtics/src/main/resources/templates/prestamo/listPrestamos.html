@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Préstamos</title>
+</head>
+<body>
+<h1>Listado de Préstamos</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Dispositivo</th>
+        <th>Alumno</th>
+        <th>Fecha de Préstamo</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prestamo : ${listaPrestamos}">
+        <td th:text="${prestamo.id}"></td>
+        <td th:text="${prestamo.dispositivo.nombre}"></td>
+        <td th:text="${prestamo.alumno.correo}"></td>
+        <td th:text="${prestamo.fechaPrestamo}"></td>
+        <td>
+            <a th:if="${role == 'PROFESOR'}" th:href="@{/prestamos/return/{id}(id=${prestamo.id}, profesorId=${profesor.id})}">Devolver</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:if="${role == 'PROFESOR'}" th:href="@{/prestamos/create}">Crear Nuevo Préstamo</a>
+</body>
+</html>
