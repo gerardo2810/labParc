@@ -49,7 +49,7 @@ public class PrestamosController {
 
     @PostMapping("/save")
     public String guardarPrestamo(@ModelAttribute Prestamo prestamo, @RequestParam(name = "profesorId") Long profesorId) {
-        prestamo.setProfesor(usuarioRepository.findById(profesorId).orElse(null));
+        //prestamo.setProfesor(usuarioRepository.findById(profesorId).orElse(null));
         prestamo.setFechaPrestamo(LocalDate.now());
         prestamoRepository.save(prestamo);
         return "";
