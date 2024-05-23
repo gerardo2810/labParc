@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Dispositivo</title>
+</head>
+<body>
+<h1 th:text="${dispositivo.id != null} ? 'Editar Dispositivo' : 'Crear Nuevo Dispositivo'"></h1>
+<form th:action="@{/dispositivos/save}" th:object="${dispositivo}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" />
+    </div>
+    <div>
+        <label>Descripción:</label>
+        <input type="text" th:field="*{descripcion}" />
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+    </div>
+</form>
+</body>
+</html>
